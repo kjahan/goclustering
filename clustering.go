@@ -42,9 +42,6 @@ func LoadLocations(path string) []Point {
     id := 0
     for {
         record, err := r.Read()
-        // if rand.Float64() < 0.9 {
-        //     continue
-        // }
         // stop at EOF
         if err == io.EOF {
             break
@@ -80,10 +77,6 @@ func ComputeCentroids(points []Point, clusters_map map[int]int) []Point {
             clusters_sum_p[c_id] = points[p_id]
         }
     }
-    // if __DEBUG__ {
-    //     fmt.Println("Clusters counts map:", clusters_count)
-    //     fmt.Println("Clusters sum_p map:", clusters_sum_p)
-    // }
     for c_id, _cluster_size := range clusters_count {
         p := clusters_sum_p[c_id]
         cluster_size := float64(_cluster_size)
@@ -91,25 +84,6 @@ func ComputeCentroids(points []Point, clusters_map map[int]int) []Point {
         centroids = append(centroids, centroid)
     }
     return centroids
-}
-
-func UpdateClusters_1(points []Point, centroids []Point) map[int]int {
-	clusters_map := make(map[int]int)
-	for _, p := range points {
-        p_id := p.Id
-		min_dist := math.Inf(1)
-		centroid_inx := 0
-		for c_id, c := range centroids {
-			dist := math.Sqrt(math.Pow((p.Lat - c.Lat), 2.0) + math.Pow((p.Lon - c.Lon), 2.0))
-			// fmt.Println(dist)
-			if dist < min_dist {
-				min_dist = dist
-				centroid_inx = c_id
-			}
-		}
-		clusters_map[p_id] = centroid_inx
-	}
-	return clusters_map
 }
 
 func UpdateClusters(points []Point, centroids []Point, c chan map[int]int) {
@@ -136,10 +110,6 @@ func ComputeCentroidsChanges(centroids_l []Point, centroids_r []Point) float64 {
     lon_delta := 0.0
     matched_centroids_r := make(map[int]float64)  // use this map to save matched points from centroids_r
     matched_centroids_l := make(map[int]int)      // use this map to save matched points from centroids_l  
-    if __DEBUG__ {
-        fmt.Println("left centroids:", centroids_l)
-        fmt.Println("right centroids:", centroids_r)
-    }
     for inx_l, p_l := range centroids_l {
         // find closest centroid from right to this point from left centroids
         min_dist := 10000.0
@@ -162,10 +132,6 @@ func ComputeCentroidsChanges(centroids_l []Point, centroids_r []Point) float64 {
             matched_centroids_r[matched_centroid_inx] = min_dist
             matched_centroids_l[inx_l] = matched_centroid_inx
         }
-    }
-    if __DEBUG__ {
-        fmt.Println("matched_centroids_l:", matched_centroids_l)
-        fmt.Println("matched_centroids_r:", matched_centroids_r)
     }
     delta := 0.0
     for inx_r, _ := range centroids_r {
@@ -194,9 +160,6 @@ func ComputeSSE(points []Point, clusters_map map[int]int, centroids []Point) flo
         cid := clusters_map[i]
         centroid := centroids[cid]
         dist := math.Pow((p.Lat - centroid.Lat), 2.0) + math.Pow((p.Lon - centroid.Lon), 2.0)
-        if __DEBUG__ {
-            fmt.Println("point index", i, "point:", p, "cid:", cid, "centroid:", centroid, "dist:", dist)
-        }
         sse += dist
     }
     return sse
