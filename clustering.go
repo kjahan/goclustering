@@ -259,7 +259,7 @@ func RunKMeans(points []Point, k int) (map[int]int, []Point, float64) {
 func main() {
     file_name := os.Args[1]
     fmt.Println("Loading points ...")
-	points := LoadLocations("data/" + file_name)
+	points := LoadLocations("inputs/" + file_name)
     if len(points) <= 5 {
         fmt.Println("Not enough points to run K-Means!")
         os.Exit(1)
