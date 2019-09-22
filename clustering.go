@@ -257,7 +257,7 @@ func main() {
     clusters_map, centroids, _ := RunKMeans(points, optimal_k)
     // write cluster map to a text file
     fmt.Println("Writing clusters/centroids to disk ...")
-    f_1, err_1 := os.Create("outputs/clusters.txt")
+    f_1, err_1 := os.Create("outputs/clusters.csv")
     if err_1 != nil {
         panic(err_1)
     }
@@ -270,7 +270,7 @@ func main() {
             panic(err)
         }
     }
-    f_2, err_2 := os.Create("outputs/centroids.txt")
+    f_2, err_2 := os.Create("outputs/centroids.csv")
     if err_2 != nil {
         panic(err_2)
     }
