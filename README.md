@@ -6,6 +6,7 @@ This implementation programmatically optimizes for the number of clusters (k) an
 
 # Build
 `go build`
+
 `mkdir outputs`
 
 # Data
