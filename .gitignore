@@ -12,5 +12,5 @@
 *.out
 outputs/centroids.csv
 outputs/clusters.csv
-inputs/test.csv
+inputs/*.csv
 clustering
