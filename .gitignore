@@ -10,7 +10,6 @@
 
 # Output of the go coverage tool, specifically when used with LiteIDE
 *.out
-outputs/centroids.csv
-outputs/clusters.csv
+outputs/*.csv
 inputs/*.csv
 clustering
