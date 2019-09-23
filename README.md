@@ -10,7 +10,11 @@ This implementation programmatically optimizes for the number of clusters (k) an
 `mkdir outputs`
 
 # Data
-You can test the code with San Francisco crimes locations data located in "inputs" folder (i.e. crimes.csv). Note that you need to copy your location file in CSV format into "inputs" folder and pass your filename as a parameter to the clustering program as shown below.  The CSV file has "Lat,Lon" coding.  If you want to test with San Francisco crimes data, make sure you unzip the data file first:
+You can test the code with [San Francisco crimes data](https://data.sfgov.org/Public-Safety/Police-Department-Incident-Reports-Historical-2003/tmnf-yvry) in "inputs" folder (i.e. crimes.csv.gz). 
+
+Note that if you want to test with your own location data, you need to copy your location CSV format file into "inputs" folder first.  Next, pass your filename as a parameter to the clustering program as shown below.  Your CSV file should have "Lat,Lon" format.  
+
+If you want to test with San Francisco crimes data, you should unzip the crimes file first:
 
 `gunzip inputs/crimes.csv.gz`
 
