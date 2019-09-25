@@ -1,22 +1,24 @@
 # Clustering
-This project implements [k-means](https://en.wikipedia.org/wiki/K-means_clustering) clustering algorithm 
+This project implements [k-means](https://en.wikipedia.org/wiki/K-means_clustering) clustering algorithm.
 
 # Description
-This implementation programmatically optimizes for the number of clusters (k) and at the end of clustering process stores the clusters to disk.
+The code programmatically optimizes the number of clusters (i.e. k) and at the end of the process, it stores the detected clusters to the disk.
 
-# Build
+# Build k-means
 `go build`
 
 `mkdir outputs`
 
-# Data
-You can test the code with [San Francisco crimes data](https://data.sfgov.org/Public-Safety/Police-Department-Incident-Reports-Historical-2003/tmnf-yvry) in "inputs" folder (i.e. crimes.csv.gz). 
+# Input data
+You can test the code with [San Francisco Crimes Data](https://data.sfgov.org/Public-Safety/Police-Department-Incident-Reports-Historical-2003/tmnf-yvry) file loctaed in "inputs" folder (crimes.csv.gz). 
 
-Note that if you want to test with your own location data, you need to copy your location CSV format file into "inputs" folder first.  Next, pass your filename as a parameter to the clustering program as shown below.  Your CSV file should have "Lat,Lon" format.  
-
-If you want to test with San Francisco crimes data, you should unzip the crimes file first:
+If you want to test the code with San Francisco crimes data, you should unzip the file first:
 
 `gunzip inputs/crimes.csv.gz`
+
+When you want to run clustering with your locations data, you should store your locations file in "inputs" folder.  Also, your input should have a CSV format with two columns: "Lat,Lon".
+
+Next, just pass your filename as the only parameter to the clustering program in the command line as shown below:
 
 # Run k-means
 `./clustering crimes.csv`
